@@ -1085,7 +1085,7 @@
       const lines = text
         .split(/[\n,]+/)
         .map(n => n.trim())
-        .filter(n => n.length > 0);
+        .filter(n => n.length > 0 && !n.startsWith('#') && !n.match(/^(?:class\s*name|class|preset)\s*:/i));
 
       if (lines.length === 0) {
         this.showToast('Please enter at least one name.', 'warn');
@@ -1897,30 +1897,78 @@
         this.showToast('No students to export.', 'warn');
         return;
       }
-      const text = this.students.join('\r\n');
-      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const currentClassName = (this.newPresetNameInput && this.newPresetNameInput.value.trim())
+        || (this.classPresetSelect && this.classPresetSelect.value)
+        || 'Default Class';
+      const fileContent = `# Class: ${currentClassName}\r\n` + this.students.join('\r\n');
+      const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      const currentName = this.classPresetSelect.value || 'duck-race-class';
-      a.download = `${currentName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-list.txt`;
+      const safeFilename = currentClassName.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') || 'duck-race-class';
+      a.download = `${safeFilename}-list.txt`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      this.showToast('Class list exported to .txt file.', 'success');
+      this.showToast(`Exported "${currentClassName}" to .txt file.`, 'success');
     }
 
     importFromFile(file) {
       const reader = new FileReader();
       reader.onload = e => {
         const content = e.target.result;
-        this.setBulkNames(content);
-        const presetName = file.name.replace(/\.[^/.]+$/, '').slice(0, 30);
-        this.presets[presetName] = [...this.students];
+        if (!content || !content.trim()) {
+          this.showToast('The selected file is empty.', 'warn');
+          return;
+        }
+
+        const lines = content.split(/\r?\n/);
+        let className = '';
+
+        for (const line of lines) {
+          const trimmed = line.trim();
+          const match = trimmed.match(/^#?\s*(?:class\s*name|class|preset)\s*:\s*(.+)$/i);
+          if (match && match[1].trim()) {
+            className = match[1].trim().replace(/^[\["']+|[\]"']+$/g, '').slice(0, 30);
+            break;
+          }
+        }
+
+        if (!className) {
+          className = file.name
+            .replace(/\.[^/.]+$/, '')
+            .replace(/-list$/i, '')
+            .replace(/[_-]+/g, ' ')
+            .trim()
+            .slice(0, 30);
+        }
+        if (!className) className = 'Imported Class';
+
+        const studentNames = lines
+          .map(l => l.trim())
+          .filter(l => l.length > 0 && !l.startsWith('#') && !l.match(/^(?:class\s*name|class|preset)\s*:/i));
+
+        if (studentNames.length === 0) {
+          this.showToast('No student names found in file.', 'warn');
+          return;
+        }
+
+        if (studentNames.length > MAX_STUDENTS) {
+          this.showToast(`Capped at first ${MAX_STUDENTS} students!`, 'warn');
+          this.students = studentNames.slice(0, MAX_STUDENTS);
+        } else {
+          this.students = studentNames;
+        }
+
+        this.saveRoster();
+        this.syncRosterUI();
+
+        this.presets[className] = [...this.students];
         this.savePresets();
-        this.populatePresetDropdown(presetName);
-        this.showToast(`Imported "${file.name}" (${this.students.length} students).`, 'success');
+        this.populatePresetDropdown(className);
+
+        this.showToast(`Imported "${className}" (${this.students.length} students).`, 'success');
       };
       reader.readAsText(file);
     }
