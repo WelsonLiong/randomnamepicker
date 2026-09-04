@@ -8,142 +8,300 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="style.css?v=15">
 </head>
 <body>
   <div class="app-container" id="appContainer">
-    <!-- Top Header Navigation Bar -->
-    <header class="app-header">
-      <div class="brand-group">
-        <div class="duck-mascot-icon" id="headerMascot">
-          <!-- Vector Duck Mascot Icon -->
-          <svg viewBox="0 0 40 40" width="34" height="34" fill="none">
-            <!-- Duck Tail -->
-            <path d="M 10,24 Q 3,15 11,28 Z" fill="#F59E0B" stroke="#B45309" stroke-width="1.8" stroke-linejoin="round"/>
-            <!-- Duck Body -->
-            <ellipse cx="20" cy="25" rx="12" ry="8.5" fill="#FBBF24" stroke="#B45309" stroke-width="1.8"/>
-            <!-- Duck Wing -->
-            <path d="M 14,24 Q 19,19 24,23 Q 21,28 16,27 Z" fill="#F59E0B" stroke="#B45309" stroke-width="1.5"/>
-            <!-- Duck Head -->
-            <circle cx="26" cy="16.5" r="7.8" fill="#FBBF24" stroke="#B45309" stroke-width="1.8"/>
-            <!-- Duck Beak -->
-            <path d="M 31,16 Q 39,17 33,21 Q 30,20 31,16 Z" fill="#FF7825" stroke="#C2410C" stroke-width="1.5" stroke-linejoin="round"/>
-            <!-- Big Cute Eye -->
-            <circle cx="28.5" cy="14.8" r="2.2" fill="#1E293B"/>
-            <circle cx="29.2" cy="14.1" r="0.8" fill="#FFFFFF"/>
-            <!-- Rosy Cheek Blush -->
-            <ellipse cx="25" cy="19" rx="2" ry="1.2" fill="#FB7185" opacity="0.65"/>
-          </svg>
-        </div>
-        <div class="brand-titles">
-          <h1 class="main-title">Lucky Duck Race!</h1>
-          <p class="subtitle">Classroom Random Name Picker</p>
-        </div>
-      </div>
-
-      <!-- Quick Action Controls -->
-      <div class="header-actions">
-        <div class="stat-badge" id="studentCountBadge" title="Current students in race">
-          <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor" class="badge-svg-icon">
-            <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
-          </svg>
-          <span id="headerStudentCount">0</span> / 100 Ducks
-        </div>
-
-        <!-- Race Speed / Length Selection in Header -->
-        <div class="header-speed-group" title="Race Duration / Speed">
-          <svg viewBox="0 0 20 20" width="16" height="16" fill="#0284c7">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-          </svg>
-          <label for="raceDurationSelect" class="header-speed-label">Speed:</label>
-          <select id="raceDurationSelect" class="styled-select header-styled-select">
-            <option value="5">Quick (5s)</option>
-            <option value="8" selected>Fun (8s)</option>
-            <option value="12">Suspense (12s)</option>
-          </select>
-        </div>
-
-        <button id="soundToggleBtn" class="pill-btn secondary-btn" title="Toggle Sound Effects">
-          <span id="soundIconWrapper">
-            <svg id="soundOnSvg" viewBox="0 0 20 20" width="18" height="18" fill="currentColor">
-              <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd"/>
+    <!-- ================================================================= -->
+    <!-- VIEW 1: LANDING PAGE GAME HUB                                     -->
+    <!-- ================================================================= -->
+    <div class="landing-view" id="landingView">
+      <!-- Hub Top Header -->
+      <header class="app-header landing-header">
+        <div class="brand-group">
+          <div class="hub-mascot-icon" id="hubMascot">
+            <!-- Arcade Star Trophy Vector SVG (Zero Emoji) -->
+            <svg viewBox="0 0 40 40" width="34" height="34" fill="none">
+              <circle cx="20" cy="20" r="18" fill="#FBBF24" stroke="#B45309" stroke-width="2"/>
+              <path d="M 20,7 L 24,15 L 33,16.5 L 26.5,23 L 28,32 L 20,27.5 L 12,32 L 13.5,23 L 7,16.5 L 16,15 Z" fill="#F59E0B" stroke="#B45309" stroke-width="1.5"/>
+              <circle cx="20" cy="20" r="4" fill="#FEF08A"/>
             </svg>
-            <svg id="soundOffSvg" viewBox="0 0 20 20" width="18" height="18" fill="currentColor" style="display:none;">
-              <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-            </svg>
-          </span>
-          <span id="soundText">Sound ON</span>
-        </button>
-
-        <button id="fullscreenBtn" class="pill-btn secondary-btn" title="Toggle Full Screen">
-          <svg id="fullscreenExpandSvg" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 8V3m0 0h5M3 3l6 6m8-6v5m0-5h-5m5 0l-6 6m-8 8v-5m0 5h5m-5 0l6-6m8 6v-5m0 5h-5m5 0l-6-6"/>
-          </svg>
-          <svg id="fullscreenCompressSvg" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-            <path d="M9 3v5m0 0H4m5 0L3 3m8 5h5m-5 0V3m0 5l6-6m-6 8h5m-5 0v5m0-5l6 6m-8-6H4m5 0v5m0-5l-6 6"/>
-          </svg>
-          <span id="fullscreenText">Full Screen</span>
-        </button>
-
-        <button id="toggleDrawerBtn" class="pill-btn accent-btn" title="Toggle Teacher Roster Desk">
-          <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor">
-            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828zM4 12v4a1 1 0 001 1h10a1 1 0 001-1v-1a1 1 0 10-2 0v1H6v-4H4z"/>
-          </svg>
-          <span>Student List</span>
-        </button>
-      </div>
-    </header>
-
-    <!-- Main Content Area: River Track (Directly below header for max vertical space) -->
-    <main class="main-arena">
-      <!-- River Canvas Viewport -->
-      <div class="river-viewport" id="riverViewport">
-        <!-- Floating scenery & water layers inside canvas -->
-        <canvas id="riverCanvas"></canvas>
-
-        <!-- Dynamic Countdown Overlay (3, 2, 1, QUACK!) -->
-        <div class="countdown-overlay" id="countdownOverlay">
-          <div class="countdown-bubble" id="countdownBubble">
-            <span id="countdownText">3</span>
+          </div>
+          <div class="brand-titles">
+            <h1 class="main-title">Random Name Pickers</h1>
+            <p class="subtitle">Classroom Game Hub & Simulations</p>
           </div>
         </div>
-      </div>
 
-      <!-- Bottom Floating Action Bar -->
-      <div class="bottom-action-bar" id="bottomActionBar">
-        <button id="startRaceBtn" class="giant-race-btn pulse-anim">
-          <svg viewBox="0 0 40 40" width="34" height="34" class="btn-duck-svg" fill="none">
-            <!-- Duck Tail -->
-            <path d="M 10,24 Q 3,15 11,28 Z" fill="#FFFBEB" stroke="#451A03" stroke-width="2" stroke-linejoin="round"/>
-            <!-- Duck Body -->
-            <ellipse cx="20" cy="25" rx="12" ry="8.5" fill="#FFFBEB" stroke="#451A03" stroke-width="2"/>
-            <!-- Duck Wing -->
-            <path d="M 14,24 Q 19,19 24,23 Q 21,28 16,27 Z" fill="#FEF08A" stroke="#451A03" stroke-width="1.8"/>
-            <!-- Duck Head -->
-            <circle cx="26" cy="16.5" r="7.8" fill="#FFFBEB" stroke="#451A03" stroke-width="2"/>
-            <!-- Duck Beak -->
-            <path d="M 31,16 Q 39,17 33,21 Q 30,20 31,16 Z" fill="#F97316" stroke="#451A03" stroke-width="1.8" stroke-linejoin="round"/>
-            <!-- Cheerful Big Eye -->
-            <circle cx="28.5" cy="14.8" r="2.3" fill="#1E293B"/>
-            <circle cx="29.2" cy="14.1" r="0.9" fill="#FFFFFF"/>
-            <!-- Rosy Cheek -->
-            <ellipse cx="25" cy="19" rx="2" ry="1.2" fill="#F43F5E" opacity="0.65"/>
-          </svg>
-          <span class="btn-label">START DUCK RACE!</span>
-          <svg viewBox="0 0 20 20" width="22" height="22" fill="#422006" class="btn-sparkle-svg">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-          </svg>
-        </button>
+        <div class="header-actions">
+          <div class="stat-badge" id="hubStudentCountBadge" title="Current students in roster">
+            <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor" class="badge-svg-icon">
+              <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+            </svg>
+            <span id="hubStudentCount">0</span> Students Ready
+          </div>
 
-        <button id="resetRaceBtn" class="round-tool-btn" title="Reset ducks to start line">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-            <path d="M3 3v5h5"/>
-          </svg>
-          <span class="tool-tooltip">Reset Line</span>
-        </button>
-      </div>
-    </main>
+          <button id="hubDrawerBtn" class="pill-btn accent-btn" title="Open Teacher Roster Desk">
+            <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor">
+              <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828zM4 12v4a1 1 0 001 1h10a1 1 0 001-1v-1a1 1 0 10-2 0v1H6v-4H4z"/>
+            </svg>
+            <span>Student List</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Hub Content Body -->
+      <main class="landing-main">
+        <div class="landing-hero">
+          <h2 class="landing-headline">Choose a Game for Today's Pick!</h2>
+          <p class="landing-lead">Select an animated simulation to pick students randomly, fairly, and with classroom excitement.</p>
+        </div>
+
+        <!-- Game Cards Grid -->
+        <div class="game-cards-grid">
+          <!-- Game 1: Lucky Duck Race -->
+          <div class="game-card card-duck" data-game-id="duck-race">
+            <div class="card-badge badge-river">River Race</div>
+            <div class="card-art-preview">
+              <svg viewBox="0 0 120 100" width="100" height="84" fill="none">
+                <ellipse cx="60" cy="85" rx="44" ry="9" fill="#38BDF8" opacity="0.3"/>
+                <path d="M 35,62 Q 22,46 34,70 Z" fill="#F59E0B" stroke="#B45309" stroke-width="2"/>
+                <ellipse cx="58" cy="62" rx="28" ry="20" fill="#FBBF24" stroke="#B45309" stroke-width="2.5"/>
+                <circle cx="76" cy="42" r="18" fill="#FBBF24" stroke="#B45309" stroke-width="2.5"/>
+                <path d="M 88,42 Q 106,46 92,54 Z" fill="#FF7825" stroke="#C2410C" stroke-width="2"/>
+                <circle cx="82" cy="38" r="4.5" fill="#1E293B"/>
+                <circle cx="83.5" cy="36.5" r="1.5" fill="#FFFFFF"/>
+                <ellipse cx="74" cy="48" rx="4" ry="2.5" fill="#FB7185" opacity="0.7"/>
+                <path d="M 44,60 Q 56,48 70,60 Q 64,74 48,70 Z" fill="#F59E0B" stroke="#B45309" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Lucky Duck Race</h3>
+            <p class="card-description">Rubber ducks paddle down a lively river with turbo quacks, bobbing lilies, and splash ripples.</p>
+            <button class="play-card-btn" data-game="duck-race">
+              <span>Play Duck Race</span>
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+          </div>
+
+          <!-- Game 2: Horse Derby Race -->
+          <div class="game-card card-horse" data-game-id="horse-race">
+            <div class="card-badge badge-turf">Turf Derby</div>
+            <div class="card-art-preview">
+              <svg viewBox="0 0 120 100" width="100" height="84" fill="none">
+                <ellipse cx="60" cy="85" rx="46" ry="8" fill="#15803D" opacity="0.35"/>
+                <ellipse cx="56" cy="54" rx="26" ry="14" fill="#78350F" stroke="#451A03" stroke-width="2"/>
+                <path d="M 72,48 L 88,24 L 98,28 L 88,44 Z" fill="#78350F" stroke="#451A03" stroke-width="2"/>
+                <circle cx="86" cy="30" r="3.5" fill="#0F172A"/>
+                <path d="M 40,56 L 30,76 L 24,78" stroke="#451A03" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 70,58 L 82,74 L 88,72" stroke="#451A03" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 34,50 Q 20,44 14,56 Q 24,62 36,54 Z" fill="#1C1917"/>
+                <path d="M 70,36 Q 64,42 60,52" stroke="#1C1917" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="62" cy="38" r="6" fill="#2563EB"/>
+                <path d="M 64,36 L 72,36 L 68,39 Z" fill="#FFFFFF"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Horse Derby Race</h3>
+            <p class="card-description">Galloping thoroughbreds race down the turf track with real animated leg strides, jockeys, and dust!</p>
+            <button class="play-card-btn play-btn-horse" data-game="horse-race">
+              <span>Play Horse Derby</span>
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+          </div>
+
+          <!-- Game 3: Cosmic Rocket Odyssey -->
+          <div class="game-card card-rocket" data-game-id="rocket-race">
+            <div class="card-badge badge-cosmic">Cosmic Orbit</div>
+            <div class="card-art-preview">
+              <svg viewBox="0 0 120 100" width="100" height="84" fill="none">
+                <circle cx="25" cy="20" r="1.5" fill="#FEF08A"/>
+                <circle cx="95" cy="25" r="2" fill="#FEF08A"/>
+                <circle cx="85" cy="75" r="1.5" fill="#FEF08A"/>
+                <path d="M 60,18 C 70,32 72,55 70,70 L 50,70 C 48,55 50,32 60,18 Z" fill="#E2E8F0" stroke="#475569" stroke-width="2"/>
+                <circle cx="60" cy="40" r="6" fill="#0284C7" stroke="#0369A1" stroke-width="1.5"/>
+                <path d="M 50,60 L 38,72 L 50,70 Z" fill="#EF4444"/>
+                <path d="M 70,60 L 82,72 L 70,70 Z" fill="#EF4444"/>
+                <path d="M 54,72 Q 60,92 66,72 Z" fill="#F59E0B"/>
+                <path d="M 57,72 Q 60,84 63,72 Z" fill="#FEF08A"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Cosmic Rocket Odyssey</h3>
+            <p class="card-description">Retro rockets blast off vertically into outer space with plasma trails, warp boosts, and space station docking!</p>
+            <button class="play-card-btn play-btn-rocket" data-game="rocket-race">
+              <span>Play Rocket Launch</span>
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+          </div>
+
+          <!-- Game 4: Carnival Wheel of Fortune (Coming Soon) -->
+          <div class="game-card card-teaser card-wheel">
+            <div class="card-badge badge-soon">Coming Soon</div>
+            <div class="card-art-preview">
+              <svg viewBox="0 0 120 100" width="100" height="84" fill="none">
+                <circle cx="60" cy="50" r="36" fill="#F8FAFC" stroke="#CA8A04" stroke-width="3"/>
+                <path d="M 60,50 L 60,14 A 36 36 0 0 1 85,24 Z" fill="#EF4444"/>
+                <path d="M 60,50 L 85,24 A 36 36 0 0 1 96,50 Z" fill="#3B82F6"/>
+                <path d="M 60,50 L 96,50 A 36 36 0 0 1 85,76 Z" fill="#10B981"/>
+                <path d="M 60,50 L 85,76 A 36 36 0 0 1 60,86 Z" fill="#F59E0B"/>
+                <path d="M 60,50 L 60,86 A 36 36 0 0 1 35,76 Z" fill="#8B5CF6"/>
+                <path d="M 60,50 L 35,76 A 36 36 0 0 1 24,50 Z" fill="#EC4899"/>
+                <path d="M 60,50 L 24,50 A 36 36 0 0 1 35,24 Z" fill="#06B6D4"/>
+                <path d="M 60,50 L 35,24 A 36 36 0 0 1 60,14 Z" fill="#F97316"/>
+                <circle cx="60" cy="50" r="8" fill="#FDE047" stroke="#B45309" stroke-width="2"/>
+                <polygon points="60,10 55,2 65,2" fill="#DC2626"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Wheel of Fortune</h3>
+            <p class="card-description">Classic carnival spinning wheel with suspenseful clicking ticker and gold brass pegs.</p>
+            <button class="play-card-btn disabled" disabled>Coming Soon</button>
+          </div>
+
+          <!-- Game 5: Balloon Carnival Ascent (Coming Soon) -->
+          <div class="game-card card-teaser card-balloon">
+            <div class="card-badge badge-soon">Coming Soon</div>
+            <div class="card-art-preview">
+              <svg viewBox="0 0 120 100" width="100" height="84" fill="none">
+                <ellipse cx="30" cy="75" rx="18" ry="8" fill="#E2E8F0"/>
+                <ellipse cx="90" cy="80" rx="22" ry="10" fill="#E2E8F0"/>
+                <path d="M 45,34 C 45,18 75,18 75,34 C 75,44 64,52 64,58 L 56,58 C 56,52 45,44 45,34 Z" fill="#38BDF8" stroke="#0284C7" stroke-width="2"/>
+                <path d="M 52,24 Q 56,36 56,58 L 64,58 Q 64,36 68,24 Z" fill="#F43F5E"/>
+                <rect x="56" y="64" width="8" height="7" rx="1.5" fill="#78350F"/>
+                <line x1="56" y1="58" x2="57" y2="64" stroke="#78350F"/>
+                <line x1="64" y1="58" x2="63" y2="64" stroke="#78350F"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Balloon Sky Float</h3>
+            <p class="card-description">Float high into sunny morning skies with colorful balloons, gentle breezes, and clouds.</p>
+            <button class="play-card-btn disabled" disabled>Coming Soon</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 2: GAME ARENA VIEW                                           -->
+    <!-- ================================================================= -->
+    <div class="game-arena-view hidden" id="gameArenaView">
+      <!-- Arena Header Navigation Bar -->
+      <header class="app-header">
+        <div class="brand-group">
+          <!-- Back to Game Hub Button -->
+          <button id="backToHubBtn" class="pill-btn secondary-btn back-hub-btn" title="Return to Game Selection Hub">
+            <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 16l-5-5 5-5"/>
+            </svg>
+            <span>All Games</span>
+          </button>
+
+          <div class="duck-mascot-icon" id="headerMascot">
+            <!-- Dynamic Vector Mascot Icon -->
+            <svg viewBox="0 0 40 40" width="34" height="34" fill="none">
+              <path d="M 10,24 Q 3,15 11,28 Z" fill="#F59E0B" stroke="#B45309" stroke-width="1.8" stroke-linejoin="round"/>
+              <ellipse cx="20" cy="25" rx="12" ry="8.5" fill="#FBBF24" stroke="#B45309" stroke-width="1.8"/>
+              <path d="M 14,24 Q 19,19 24,23 Q 21,28 16,27 Z" fill="#F59E0B" stroke="#B45309" stroke-width="1.5"/>
+              <circle cx="26" cy="16.5" r="7.8" fill="#FBBF24" stroke="#B45309" stroke-width="1.8"/>
+              <path d="M 31,16 Q 39,17 33,21 Q 30,20 31,16 Z" fill="#FF7825" stroke="#C2410C" stroke-width="1.5" stroke-linejoin="round"/>
+              <circle cx="28.5" cy="14.8" r="2.2" fill="#1E293B"/>
+              <circle cx="29.2" cy="14.1" r="0.8" fill="#FFFFFF"/>
+              <ellipse cx="25" cy="19" rx="2" ry="1.2" fill="#FB7185" opacity="0.65"/>
+            </svg>
+          </div>
+          <div class="brand-titles">
+            <h1 class="main-title" id="headerMainTitle">Lucky Duck Race!</h1>
+            <p class="subtitle" id="headerSubtitle">Classroom Random Name Picker</p>
+          </div>
+        </div>
+
+        <!-- Quick Action Controls -->
+        <div class="header-actions">
+          <div class="stat-badge" id="studentCountBadge" title="Current students in race">
+            <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor" class="badge-svg-icon">
+              <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+            </svg>
+            <span id="headerStudentCount">0</span> / 100 Racers
+          </div>
+
+          <!-- Race Speed / Length Selection in Header -->
+          <div class="header-speed-group" title="Race Duration / Speed">
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="#0284c7">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+            </svg>
+            <label for="raceDurationSelect" class="header-speed-label">Speed:</label>
+            <select id="raceDurationSelect" class="styled-select header-styled-select">
+              <option value="5">Quick (5s)</option>
+              <option value="8" selected>Fun (8s)</option>
+              <option value="12">Suspense (12s)</option>
+            </select>
+          </div>
+
+          <button id="soundToggleBtn" class="pill-btn secondary-btn" title="Toggle Sound Effects">
+            <span id="soundIconWrapper">
+              <svg id="soundOnSvg" viewBox="0 0 20 20" width="18" height="18" fill="currentColor">
+                <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd"/>
+              </svg>
+              <svg id="soundOffSvg" viewBox="0 0 20 20" width="18" height="18" fill="currentColor" style="display:none;">
+                <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+            </span>
+            <span id="soundText">Sound ON</span>
+          </button>
+
+          <button id="fullscreenBtn" class="pill-btn secondary-btn" title="Toggle Full Screen">
+            <svg id="fullscreenExpandSvg" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 8V3m0 0h5M3 3l6 6m8-6v5m0-5h-5m5 0l-6 6m-8 8v-5m0 5h5m-5 0l6-6m8 6v-5m0 5h-5m5 0l-6-6"/>
+            </svg>
+            <svg id="fullscreenCompressSvg" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+              <path d="M9 3v5m0 0H4m5 0L3 3m8 5h5m-5 0V3m0 5l6-6m-6 8h5m-5 0v5m0-5l6 6m-8-6H4m5 0v5m0-5l-6 6"/>
+            </svg>
+            <span id="fullscreenText">Full Screen</span>
+          </button>
+
+          <button id="toggleDrawerBtn" class="pill-btn accent-btn" title="Toggle Teacher Roster Desk">
+            <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor">
+              <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828zM4 12v4a1 1 0 001 1h10a1 1 0 001-1v-1a1 1 0 10-2 0v1H6v-4H4z"/>
+            </svg>
+            <span>Student List</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Content Area: Race Track Viewport -->
+      <main class="main-arena">
+        <!-- Canvas Viewport -->
+        <div class="river-viewport" id="riverViewport">
+          <canvas id="riverCanvas"></canvas>
+
+          <!-- Dynamic Countdown Overlay (3, 2, 1, GO!) -->
+          <div class="countdown-overlay" id="countdownOverlay">
+            <div class="countdown-bubble" id="countdownBubble">
+              <span id="countdownText">3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Floating Action Bar -->
+        <div class="bottom-action-bar" id="bottomActionBar">
+          <button id="startRaceBtn" class="giant-race-btn pulse-anim">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" class="btn-race-flag-svg">
+              <path d="M4 2v18h2v-6h12l-2-5 2-5H6V2H4z"/>
+            </svg>
+            <span class="btn-label" id="startRaceBtnText">START RACE!</span>
+            <svg viewBox="0 0 20 20" width="22" height="22" fill="#422006" class="btn-sparkle-svg">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+          </button>
+
+          <button id="resetRaceBtn" class="round-tool-btn" title="Reset racers to start line">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+            </svg>
+            <span class="tool-tooltip">Reset Line</span>
+          </button>
+        </div>
+      </main>
+    </div>
+
+
 
     <!-- Slide-in Teacher Desk / Student Roster Drawer -->
     <aside class="teacher-drawer" id="teacherDrawer">
@@ -297,7 +455,7 @@
         <!-- Trophy Duck Character Illustration (Dynamic Colors to match winner duck) -->
         <div class="winner-avatar-wrapper">
           <div class="winner-duck-halo"></div>
-          <div class="winner-duck-avatar" id="winnerDuckAvatar">
+          <div class="winner-duck-avatar" id="modalDuckIllustration">
             <svg viewBox="0 0 160 160" width="146" height="146" class="crown-duck-svg" id="modalDuckSvg">
               <defs>
                 <linearGradient id="duckCrownGrad" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -336,6 +494,11 @@
               <!-- Sparkling Star Glint on Crown -->
               <path d="M 96,16 L 97.5,19.5 L 101,21 L 97.5,22.5 L 96,26 L 94.5,22.5 L 91,21 L 94.5,19.5 Z" fill="#FFFFFF" opacity="0.95"/>
             </svg>
+          </div>
+
+          <!-- Dynamic Champion Horse Avatar Container -->
+          <div class="winner-horse-avatar" id="modalHorseIllustration" style="display:none;">
+            <div id="modalAvatarContainer"></div>
           </div>
           <!-- Shiny True-Gold 1st Place Medal (Custom Vector SVG) -->
           <div class="trophy-badge" id="winnerMedalBadge">
@@ -382,7 +545,7 @@
 
         <div class="winner-congrats-text">Hooray! Congratulations to:</div>
         <div class="winner-name-banner" id="winnerNameDisplay">Super Student</div>
-        <p class="winner-subtext">Swam the fastest and crossed the finish line first!</p>
+        <p class="winner-subtext" id="winnerSubtext">Crossed the finish line first!</p>
 
         <!-- Pop-up Action Buttons Required: Remove and Close (Zero Emoji, Clean Vector Icons) -->
         <div class="modal-button-group">
@@ -416,6 +579,21 @@
     <div class="toast-container" id="toastContainer"></div>
   </div>
 
-  <script src="app.js?v=14"></script>
+  <!-- Core Platform Modules -->
+  <script src="js/core/roster.js?v=15"></script>
+  <script src="js/core/audio.js?v=15"></script>
+  <script src="js/core/modal.js?v=15"></script>
+  <script src="js/core/game-engine.js?v=15"></script>
+
+  <!-- Game Modules -->
+  <script src="js/games/duck-race/duck-racer.js?v=15"></script>
+  <script src="js/games/duck-race/duck-race.js?v=15"></script>
+  <script src="js/games/horse-race/horse-racer.js?v=19"></script>
+  <script src="js/games/horse-race/horse-race.js?v=20"></script>
+  <script src="js/games/rocket-race/rocket-racer.js?v=1"></script>
+  <script src="js/games/rocket-race/rocket-race.js?v=1"></script>
+
+  <!-- Platform Application Shell -->
+  <script src="app.js?v=21"></script>
 </body>
 </html>

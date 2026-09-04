@@ -1,0 +1,30 @@
+# AI Agent Instructions & IDE Configurations
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+.agents/
+.gemini/
+.cursor/
+.cursorrules
+
+# IDE & Editor Settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS System & Thumbnail Files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+desktop.ini
+[Dd]esktop.ini
+.DS_Store
+._*
+
+# Temporary, Backup & Log Files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
