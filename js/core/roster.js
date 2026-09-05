@@ -37,7 +37,9 @@
       this.studentChipsContainer = document.getElementById('studentChipsContainer');
       this.singleNameInput = document.getElementById('singleNameInput');
       this.addSingleNameBtn = document.getElementById('addSingleNameBtn');
-      this.updateFromBulkBtn = document.getElementById('updateFromBulkBtn');
+      this.bulkAutoSaveIndicator = document.getElementById('bulkAutoSaveIndicator');
+      this.bulkDebounceTimer = null;
+      this.autoSaveFadeTimer = null;
       this.loadSampleBtn = document.getElementById('loadSampleBtn');
       this.shuffleNamesBtn = document.getElementById('shuffleNamesBtn');
       this.clearAllNamesBtn = document.getElementById('clearAllNamesBtn');
@@ -151,35 +153,73 @@
       return false;
     }
 
-    setBulkNames(text) {
-      const lines = text
-        .split(/[\n,]+/)
-        .map(n => n.trim())
-        .filter(n => n.length > 0 && !n.startsWith('#') && !n.match(/^(?:class\s*name|class|preset)\s*:/i));
+    showAutoSaveSaving() {
+      if (!this.bulkAutoSaveIndicator) return;
+      this.bulkAutoSaveIndicator.classList.add('active', 'saving');
+      const textSpan = this.bulkAutoSaveIndicator.querySelector('.auto-save-text');
+      if (textSpan) textSpan.textContent = 'Saving...';
+    }
 
-      if (lines.length === 0) {
-        if (this.options.showToast) {
-          this.options.showToast('Please enter at least one name.', 'warn');
+    showAutoSaveIndicator() {
+      if (!this.bulkAutoSaveIndicator) return;
+      this.bulkAutoSaveIndicator.classList.remove('saving');
+      this.bulkAutoSaveIndicator.classList.add('active');
+      const textSpan = this.bulkAutoSaveIndicator.querySelector('.auto-save-text');
+      if (textSpan) textSpan.textContent = 'Auto-saved';
+
+      if (this.autoSaveFadeTimer) {
+        clearTimeout(this.autoSaveFadeTimer);
+      }
+      this.autoSaveFadeTimer = setTimeout(() => {
+        if (this.bulkAutoSaveIndicator) {
+          this.bulkAutoSaveIndicator.classList.remove('active', 'saving');
         }
-        return false;
+      }, 2500);
+    }
+
+    autoSaveFromBulk(immediate = false) {
+      if (!this.bulkNamesTextarea) return;
+
+      if (this.bulkDebounceTimer) {
+        clearTimeout(this.bulkDebounceTimer);
+        this.bulkDebounceTimer = null;
       }
 
-      if (lines.length > MAX_STUDENTS) {
-        if (this.options.showToast) {
-          this.options.showToast(`Capped at the first ${MAX_STUDENTS} students!`, 'warn');
+      const executeSave = () => {
+        const text = this.bulkNamesTextarea.value;
+        const lines = text
+          .split(/[\n,]+/)
+          .map(n => n.trim())
+          .filter(n => n.length > 0 && !n.startsWith('#') && !n.match(/^(?:class\s*name|class|preset)\s*:/i));
+
+        const clamped = lines.slice(0, MAX_STUDENTS);
+
+        const isSame = clamped.length === this.students.length &&
+          clamped.every((val, idx) => val === this.students[idx]);
+
+        if (!isSame) {
+          this.students = clamped;
+          this.saveRoster();
+          this.syncUI();
+          this.notifyRosterChanged();
         }
-        this.students = lines.slice(0, MAX_STUDENTS);
+
+        this.showAutoSaveIndicator();
+      };
+
+      if (immediate) {
+        executeSave();
       } else {
-        this.students = lines;
-        if (this.options.showToast) {
-          this.options.showToast(`Updated roster with ${this.students.length} students!`, 'success');
-        }
+        this.showAutoSaveSaving();
+        this.bulkDebounceTimer = setTimeout(executeSave, 400);
       }
+    }
 
-      this.saveRoster();
-      this.syncUI();
-      this.notifyRosterChanged();
-      this.closeDrawer();
+    setBulkNames(text) {
+      if (this.bulkNamesTextarea) {
+        this.bulkNamesTextarea.value = text;
+      }
+      this.autoSaveFromBulk(true);
       return true;
     }
 
@@ -233,7 +273,7 @@
         }
       }
 
-      if (this.bulkNamesTextarea) {
+      if (this.bulkNamesTextarea && document.activeElement !== this.bulkNamesTextarea) {
         this.bulkNamesTextarea.value = this.students.join('\n');
       }
 
@@ -467,6 +507,9 @@
     }
 
     closeDrawer() {
+      if (this.bulkDebounceTimer || (this.bulkNamesTextarea && document.activeElement === this.bulkNamesTextarea)) {
+        this.autoSaveFromBulk(true);
+      }
       if (this.teacherDrawer) {
         this.teacherDrawer.classList.remove('open');
         this.teacherDrawer.setAttribute('aria-hidden', 'true');
@@ -524,9 +567,23 @@
         });
       }
 
-      if (this.updateFromBulkBtn && this.bulkNamesTextarea) {
-        this.updateFromBulkBtn.addEventListener('click', () => {
-          this.setBulkNames(this.bulkNamesTextarea.value);
+      if (this.bulkNamesTextarea) {
+        this.bulkNamesTextarea.addEventListener('input', e => {
+          if (e.inputType === 'insertLineBreak' || (e.data === null && this.bulkNamesTextarea.value.endsWith('\n'))) {
+            this.autoSaveFromBulk(true);
+          } else {
+            this.autoSaveFromBulk(false);
+          }
+        });
+
+        this.bulkNamesTextarea.addEventListener('keydown', e => {
+          if (e.key === 'Enter') {
+            setTimeout(() => this.autoSaveFromBulk(true), 0);
+          }
+        });
+
+        this.bulkNamesTextarea.addEventListener('blur', () => {
+          this.autoSaveFromBulk(true);
         });
       }
 

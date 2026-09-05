@@ -559,6 +559,17 @@
             this.launchGame(gameId);
           }
         });
+
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            if (e.target.closest('.play-card-btn')) return;
+            e.preventDefault();
+            const gameId = card.dataset.gameId;
+            if (gameId && !card.classList.contains('card-teaser')) {
+              this.launchGame(gameId);
+            }
+          }
+        });
       });
 
       // Game Card Video Hover Previews
