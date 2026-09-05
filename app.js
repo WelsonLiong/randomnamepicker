@@ -75,6 +75,29 @@
     </svg>
   `;
 
+  const WHEEL_MASCOT_SVG = `
+    <svg viewBox="0 0 40 40" width="34" height="34" fill="none">
+      <!-- Circular Gold Bevel Badge -->
+      <circle cx="20" cy="20" r="18" fill="#1E1B4B" stroke="#CA8A04" stroke-width="2"/>
+      
+      <!-- Slices -->
+      <path d="M 20,20 L 20,4 A 16 16 0 0 1 31,9 Z" fill="#EF4444"/>
+      <path d="M 20,20 L 31,9 A 16 16 0 0 1 36,20 Z" fill="#3B82F6"/>
+      <path d="M 20,20 L 36,20 A 16 16 0 0 1 31,31 Z" fill="#10B981"/>
+      <path d="M 20,20 L 31,31 A 16 16 0 0 1 20,36 Z" fill="#F59E0B"/>
+      <path d="M 20,20 L 20,36 A 16 16 0 0 1 9,31 Z" fill="#8B5CF6"/>
+      <path d="M 20,20 L 9,31 A 16 16 0 0 1 4,20 Z" fill="#EC4899"/>
+      <path d="M 20,20 L 4,20 A 16 16 0 0 1 9,9 Z" fill="#06B6D4"/>
+      <path d="M 20,20 L 9,9 A 16 16 0 0 1 20,4 Z" fill="#F97316"/>
+      
+      <!-- Center Hub -->
+      <circle cx="20" cy="20" r="4.5" fill="#FDE047" stroke="#B45309" stroke-width="1.2"/>
+      
+      <!-- Top Flapper -->
+      <polygon points="20,7 17,2 23,2" fill="#DC2626"/>
+    </svg>
+  `;
+
   class AppShell {
     constructor() {
       // DOM Elements - Views
@@ -178,6 +201,13 @@
         return;
       }
 
+      // Stop all card video previews
+      document.querySelectorAll('.card-video').forEach(v => {
+        v.pause();
+        v.currentTime = 0;
+      });
+      document.querySelectorAll('.game-card.is-previewing').forEach(c => c.classList.remove('is-previewing'));
+
       if (this.landingView) this.landingView.classList.add('hidden');
       if (this.gameArenaView) this.gameArenaView.classList.remove('hidden');
 
@@ -192,6 +222,11 @@
         if (this.headerSubtitle) this.headerSubtitle.textContent = 'Classroom Random Name Picker';
         if (this.headerMascot) this.headerMascot.innerHTML = ROCKET_MASCOT_SVG;
         if (this.startRaceBtnText) this.startRaceBtnText.textContent = 'LAUNCH ROCKETS!';
+      } else if (gameId === 'wheel-fortune') {
+        if (this.headerMainTitle) this.headerMainTitle.textContent = 'Wheel of Fortune!';
+        if (this.headerSubtitle) this.headerSubtitle.textContent = 'Classroom Random Name Picker';
+        if (this.headerMascot) this.headerMascot.innerHTML = WHEEL_MASCOT_SVG;
+        if (this.startRaceBtnText) this.startRaceBtnText.textContent = 'SPIN THE WHEEL!';
       } else {
         if (this.headerMainTitle) this.headerMainTitle.textContent = 'Lucky Duck Race!';
         if (this.headerSubtitle) this.headerSubtitle.textContent = 'Classroom Random Name Picker';
@@ -258,6 +293,15 @@
     }
 
     getParticipantColor(name) {
+      if (this.activeGameId === 'wheel-fortune' && window.WHEEL_PALETTES) {
+        let hash = 0;
+        for (let i = 0; i < name.length; i++) {
+          hash = (hash << 5) - hash + name.charCodeAt(i);
+          hash |= 0;
+        }
+        const p = window.WHEEL_PALETTES[Math.abs(hash) % window.WHEEL_PALETTES.length];
+        return p.bg;
+      }
       if (this.activeGameId === 'rocket-race' && window.ROCKET_PALETTES) {
         let hash = 0;
         for (let i = 0; i < name.length; i++) {
@@ -373,7 +417,7 @@
           this.countdownText.textContent = count;
           this.sound.playCountdown(count, this.activeGameId);
         } else if (count === 0) {
-          this.countdownText.textContent = this.activeGameId === 'rocket-race' ? 'BLAST OFF!' : (this.activeGameId === 'horse-race' ? 'GALLOP!' : 'QUACK!');
+          this.countdownText.textContent = this.activeGameId === 'wheel-fortune' ? 'SPIN!' : (this.activeGameId === 'rocket-race' ? 'BLAST OFF!' : (this.activeGameId === 'horse-race' ? 'GALLOP!' : 'QUACK!'));
           this.sound.playCountdown('go', this.activeGameId);
         } else {
           clearInterval(countInterval);
@@ -392,7 +436,10 @@
         this.activeGame.startRace(durationSecs);
       }
 
-      this.sound.playRaceMusic();
+      // Wheel of Fortune relies solely on authentic flapper peg clicks and fanfare (no race.mp3)
+      if (this.activeGameId !== 'wheel-fortune') {
+        this.sound.playRaceMusic();
+      }
 
       // Ambient race SFX
       if (this.ambientTimer) clearInterval(this.ambientTimer);
@@ -402,6 +449,8 @@
             this.sound.playGallop();
           } else if (this.activeGameId === 'rocket-race') {
             this.sound.playRocketThruster();
+          } else if (this.activeGameId === 'wheel-fortune') {
+            // Wheel Fortune handles peg clicks directly via flapper contacts
           } else {
             this.sound.playSplash();
           }
@@ -511,6 +560,44 @@
         });
       });
 
+      // Game Card Video Hover Previews
+      document.querySelectorAll('.game-card').forEach(card => {
+        const video = card.querySelector('.card-video');
+        if (!video) return;
+
+        let playPromise = null;
+
+        const startPreview = () => {
+          card.classList.add('is-previewing');
+          try {
+            video.currentTime = 0;
+            playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {});
+            }
+          } catch (e) {}
+        };
+
+        const stopPreview = () => {
+          card.classList.remove('is-previewing');
+          if (playPromise !== undefined && playPromise !== null) {
+            playPromise.then(() => {
+              video.pause();
+              video.currentTime = 0;
+            }).catch(() => {
+              video.pause();
+            });
+          } else {
+            video.pause();
+          }
+        };
+
+        card.addEventListener('mouseenter', startPreview);
+        card.addEventListener('mouseleave', stopPreview);
+        card.addEventListener('focusin', startPreview);
+        card.addEventListener('focusout', stopPreview);
+      });
+
       // Sound Toggle
       this.soundToggleBtn.addEventListener('click', () => {
         const on = this.sound.toggle();
@@ -582,17 +669,7 @@
     }
 
     showToast(message, type = 'info') {
-      if (!this.toastContainer) return;
-      const toast = document.createElement('div');
-      toast.className = `toast-message ${type === 'success' ? 'toast-success' : type === 'warn' ? 'toast-warn' : ''}`;
-      toast.textContent = message;
-      this.toastContainer.appendChild(toast);
-
-      setTimeout(() => {
-        if (toast.parentElement) {
-          toast.remove();
-        }
-      }, 3000);
+      // Toast notifications completely disabled per user preference
     }
   }
 

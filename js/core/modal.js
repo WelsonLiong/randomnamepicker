@@ -138,7 +138,16 @@
       const duckEl = document.getElementById('modalDuckIllustration');
       const customEl = document.getElementById('modalCustomIllustration') || document.getElementById('modalHorseIllustration');
 
-      if (activeGame && activeGame.id === 'rocket-race') {
+      if (activeGame && activeGame.id === 'wheel-fortune') {
+        if (duckEl) duckEl.style.display = 'none';
+        if (customEl) {
+          customEl.style.display = 'block';
+          activeGame.renderWinnerAvatar(winner);
+        }
+        if (this.subtextDisplay) {
+          this.subtextDisplay.textContent = 'The Wheel of Fortune spun and landed on your name!';
+        }
+      } else if (activeGame && activeGame.id === 'rocket-race') {
         if (duckEl) duckEl.style.display = 'none';
         if (customEl) {
           customEl.style.display = 'block';

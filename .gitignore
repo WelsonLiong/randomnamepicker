@@ -28,3 +28,20 @@ desktop.ini
 *.bak
 *.swp
 *.swo
+
+# Python Bytecode & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Media Generator Temporary Artifacts
+temp_*.webm
+temp_*.mp4
+temp_*.jpg
+
+# Node & Package Managers
+node_modules/
+npm-debug.log*

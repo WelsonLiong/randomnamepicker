@@ -206,6 +206,8 @@
             this.playRocketBlast();
           } else if (gameId === 'horse-race') {
             this.playGallop();
+          } else if (gameId === 'wheel-fortune') {
+            this.playWheelTick(1.0);
           } else {
             this.playQuack();
           }
@@ -317,6 +319,33 @@
 
       osc.start(now);
       osc.stop(now + 0.32);
+    }
+
+    // Play mechanical carnival prize wheel peg click
+    playWheelTick(speedRate = 1.0) {
+      if (!this.enabled) return;
+      this.init();
+      if (!this.ctx) return;
+
+      const now = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      // Sharp mechanical woodblock/brass tick transient
+      const baseFreq = 1150 + (speedRate * 450) + (Math.random() * 60 - 30);
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(baseFreq, now);
+      osc.frequency.exponentialRampToValueAtTime(280, now + 0.028);
+
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.24, now + 0.002);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.038);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.042);
     }
 
     // Play water splash sound
