@@ -2,9 +2,11 @@
 AGENTS.md
 CLAUDE.md
 GEMINI.md
+PRODUCT.md
 .agents/
 .gemini/
 .cursor/
+.impeccable/
 .cursorrules
 
 # IDE & Editor Settings

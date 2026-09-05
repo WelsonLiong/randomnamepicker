@@ -129,6 +129,7 @@
     }
 
     show(winner, activeGame = null) {
+      this.lastFocusedElement = document.activeElement;
       this.winner = winner;
 
       if (this.nameDisplay) {
@@ -180,8 +181,12 @@
 
       if (this.overlay) {
         this.overlay.classList.add('active');
+        this.overlay.setAttribute('aria-hidden', 'false');
       }
       this.confetti.start();
+      if (this.closeBtn) {
+        setTimeout(() => this.closeBtn.focus(), 50);
+      }
     }
 
     recolorDuckAvatar(palette) {
@@ -198,8 +203,12 @@
     close() {
       if (this.overlay) {
         this.overlay.classList.remove('active');
+        this.overlay.setAttribute('aria-hidden', 'true');
       }
       this.confetti.stop();
+      if (this.lastFocusedElement && typeof this.lastFocusedElement.focus === 'function') {
+        this.lastFocusedElement.focus();
+      }
     }
 
     bindEvents() {
@@ -216,6 +225,31 @@
           const currentWinner = this.winner;
           this.close();
           this.onRemoveWinnerCallbacks.forEach(cb => cb(currentWinner));
+        });
+      }
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && this.overlay && this.overlay.classList.contains('active')) {
+          const currentWinner = this.winner;
+          this.close();
+          this.onRematchCallbacks.forEach(cb => cb(currentWinner));
+        }
+      });
+
+      if (this.overlay) {
+        this.overlay.addEventListener('keydown', e => {
+          if (e.key !== 'Tab') return;
+          const focusables = [this.closeBtn, this.removeBtn].filter(Boolean);
+          if (focusables.length === 0) return;
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
         });
       }
     }

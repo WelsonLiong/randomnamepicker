@@ -352,8 +352,9 @@
       const deltaFactor = delta / 16.666;
       this.lastTime = currentTime;
 
-      // Update & Render active game
-      if (this.activeGame) {
+      // Only update & render when Game Arena view is active and visible
+      const isArenaVisible = this.gameArenaView && !this.gameArenaView.classList.contains('hidden');
+      if (this.activeGame && isArenaVisible) {
         this.activeGame.update(currentTime, delta, deltaFactor);
         this.activeGame.render(this.ctx, this.viewportWidth, this.viewportHeight);
         this.updateLeaderboardHUD(this.activeGame.getLeaderboard());
@@ -568,6 +569,9 @@
         let playPromise = null;
 
         const startPreview = () => {
+          if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+          }
           card.classList.add('is-previewing');
           try {
             video.currentTime = 0;

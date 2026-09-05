@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=17">
+  <link rel="stylesheet" href="style.css?v=19">
 </head>
 <body>
   <div class="app-container" id="appContainer">
@@ -41,7 +41,7 @@
             <span id="hubStudentCount">0</span> Students Ready
           </div>
 
-          <button id="hubDrawerBtn" class="pill-btn accent-btn" title="Open Teacher Roster Desk">
+          <button id="hubDrawerBtn" class="pill-btn accent-btn" title="Open Teacher Roster Desk" aria-label="Open Teacher Roster Desk">
             <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor">
               <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828zM4 12v4a1 1 0 001 1h10a1 1 0 001-1v-1a1 1 0 10-2 0v1H6v-4H4z"/>
             </svg>
@@ -164,7 +164,7 @@
       <header class="app-header">
         <div class="brand-group">
           <!-- Back to Game Hub Button -->
-          <button id="backToHubBtn" class="pill-btn secondary-btn back-hub-btn" title="Return to Game Selection Hub">
+          <button id="backToHubBtn" class="pill-btn secondary-btn back-hub-btn" title="Return to Game Selection Hub" aria-label="Return to Game Selection Hub">
             <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M13 16l-5-5 5-5"/>
             </svg>
@@ -212,7 +212,7 @@
             </select>
           </div>
 
-          <button id="soundToggleBtn" class="pill-btn secondary-btn" title="Toggle Sound Effects">
+          <button id="soundToggleBtn" class="pill-btn secondary-btn" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
             <span id="soundIconWrapper">
               <svg id="soundOnSvg" viewBox="0 0 20 20" width="18" height="18" fill="currentColor">
                 <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd"/>
@@ -224,7 +224,7 @@
             <span id="soundText">Sound ON</span>
           </button>
 
-          <button id="fullscreenBtn" class="pill-btn secondary-btn" title="Toggle Full Screen">
+          <button id="fullscreenBtn" class="pill-btn secondary-btn" title="Toggle Full Screen" aria-label="Toggle Full Screen">
             <svg id="fullscreenExpandSvg" viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 8V3m0 0h5M3 3l6 6m8-6v5m0-5h-5m5 0l-6 6m-8 8v-5m0 5h5m-5 0l6-6m8 6v-5m0 5h-5m5 0l-6-6"/>
             </svg>
@@ -234,7 +234,7 @@
             <span id="fullscreenText">Full Screen</span>
           </button>
 
-          <button id="toggleDrawerBtn" class="pill-btn accent-btn" title="Toggle Teacher Roster Desk">
+          <button id="toggleDrawerBtn" class="pill-btn accent-btn" title="Toggle Teacher Roster Desk" aria-label="Toggle Teacher Roster Desk">
             <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor">
               <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828zM4 12v4a1 1 0 001 1h10a1 1 0 001-1v-1a1 1 0 10-2 0v1H6v-4H4z"/>
             </svg>
@@ -259,7 +259,7 @@
 
         <!-- Bottom Floating Action Bar -->
         <div class="bottom-action-bar" id="bottomActionBar">
-          <button id="startRaceBtn" class="giant-race-btn pulse-anim">
+          <button id="startRaceBtn" class="giant-race-btn pulse-anim" aria-label="Start Race">
             <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" class="btn-race-flag-svg">
               <path d="M4 2v18h2v-6h12l-2-5 2-5H6V2H4z"/>
             </svg>
@@ -269,7 +269,7 @@
             </svg>
           </button>
 
-          <button id="resetRaceBtn" class="round-tool-btn" title="Reset racers to start line">
+          <button id="resetRaceBtn" class="round-tool-btn" title="Reset racers to start line" aria-label="Reset racers to start line">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
               <path d="M3 3v5h5"/>
@@ -283,17 +283,17 @@
 
 
     <!-- Slide-in Teacher Desk / Student Roster Drawer -->
-    <aside class="teacher-drawer" id="teacherDrawer">
+    <aside class="teacher-drawer" id="teacherDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true">
       <div class="drawer-header">
         <div class="drawer-title-group">
-          <svg viewBox="0 0 20 20" width="22" height="22" fill="#0284C7">
+          <svg viewBox="0 0 20 20" width="22" height="22" fill="#0284C7" aria-hidden="true">
             <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
             <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h6a1 1 0 100-2H7zm0 4a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
           </svg>
-          <h2>Teacher's Duck Pen</h2>
+          <h2 id="drawerTitle">Teacher's Desk</h2>
         </div>
-        <button id="closeDrawerBtn" class="icon-close-btn" title="Close Desk">
-          <svg viewBox="0 0 20 20" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <button id="closeDrawerBtn" class="icon-close-btn" title="Close Desk" aria-label="Close desk drawer">
+          <svg viewBox="0 0 20 20" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" aria-hidden="true">
             <path d="M5 5l10 10M15 5L5 15"/>
           </svg>
         </button>
@@ -301,7 +301,7 @@
 
       <div class="drawer-body">
         <div class="drawer-intro">
-          <p>Type or paste student names below. Each child gets their own cute rubber duck in the race!</p>
+          <p>Type or paste student names below. Each child joins the simulation and random race!</p>
           <div class="limit-indicator" id="limitIndicator">
             <div class="limit-bar-bg">
               <div class="limit-bar-fill" id="limitBarFill"></div>
@@ -316,7 +316,7 @@
         <div class="class-presets-card">
           <div class="preset-header-row">
             <label for="classPresetSelect">
-              <svg viewBox="0 0 20 20" width="16" height="16" fill="#D97706" style="vertical-align:-2px; margin-right:4px;">
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="#D97706" style="vertical-align:-2px; margin-right:4px;" aria-hidden="true">
                 <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/>
               </svg>
               <strong>Saved Classes:</strong>
@@ -326,16 +326,16 @@
             <select id="classPresetSelect" class="preset-dropdown">
               <option value="default">Default Class</option>
             </select>
-            <button id="deleteClassBtn" class="icon-tool-btn" title="Delete current saved class">
-              <svg viewBox="0 0 20 20" width="16" height="16" fill="#DC2626">
+            <button id="deleteClassBtn" class="icon-tool-btn" title="Delete current saved class" aria-label="Delete current saved class">
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="#DC2626" aria-hidden="true">
                 <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
               </svg>
             </button>
           </div>
           <div class="preset-save-row">
-            <input type="text" id="newPresetNameInput" placeholder="Save as (e.g. Class 3A)..." maxlength="30">
+            <input type="text" id="newPresetNameInput" placeholder="Save as (e.g. Class 3A)..." maxlength="30" aria-label="Class preset name">
             <button id="savePresetBtn" class="save-preset-btn">
-              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="vertical-align:-2px; margin-right:3px;">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="vertical-align:-2px; margin-right:3px;" aria-hidden="true">
                 <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V7.414a2 2 0 00-.586-1.414l-2.414-2.414A2 2 0 0013.586 3H4zm3 2h6v3H7V5zm8 10H5V9h10v6z"/>
               </svg>
               Save Class
@@ -343,25 +343,25 @@
           </div>
           <div class="file-tools-row">
             <button id="exportFileBtn" class="file-action-btn" title="Export current student list as .txt file">
-              <svg viewBox="0 0 20 20" width="15" height="15" fill="currentColor">
+              <svg viewBox="0 0 20 20" width="15" height="15" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
               </svg>
               Save to File (.txt)
             </button>
             <button id="importFileBtn" class="file-action-btn" title="Import class list from .txt file">
-              <svg viewBox="0 0 20 20" width="15" height="15" fill="currentColor">
+              <svg viewBox="0 0 20 20" width="15" height="15" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
               </svg>
               Load from File (.txt)
             </button>
-            <input type="file" id="filePickerInput" accept=".txt" style="display: none;">
+            <input type="file" id="filePickerInput" accept=".txt" style="display: none;" aria-label="Upload class list text file">
           </div>
         </div>
 
         <!-- Student Name Input Form -->
         <div class="quick-add-group">
-          <input type="text" id="singleNameInput" placeholder="Add single student name..." maxlength="35" autocomplete="off">
-          <button id="addSingleNameBtn" class="add-btn">Add Duck +</button>
+          <input type="text" id="singleNameInput" placeholder="Add single student name..." maxlength="35" autocomplete="off" aria-label="Single student name">
+          <button id="addSingleNameBtn" class="add-btn">Add Student +</button>
         </div>
 
         <div class="bulk-input-section">
@@ -369,32 +369,32 @@
             <label for="bulkNamesTextarea">Class List (One name per line):</label>
             <span class="bulk-hint">Max 100 names</span>
           </div>
-          <textarea id="bulkNamesTextarea" rows="6" placeholder="Alice&#10;Ben&#10;Chloe&#10;David&#10;Emma..."></textarea>
+          <textarea id="bulkNamesTextarea" rows="6" placeholder="Alice&#10;Ben&#10;Chloe&#10;David&#10;Emma..." aria-label="Class list names, one per line"></textarea>
           <div class="bulk-actions">
-            <button id="updateFromBulkBtn" class="secondary-pill-btn">Save & Update Ducks</button>
+            <button id="updateFromBulkBtn" class="secondary-pill-btn">Save & Update List</button>
           </div>
         </div>
 
         <!-- Quick Helper Actions -->
         <div class="drawer-helpers">
           <button id="loadSampleBtn" class="helper-btn" title="Load sample classroom list">
-            <svg viewBox="0 0 20 20" width="18" height="18" fill="#F59E0B">
+            <svg viewBox="0 0 20 20" width="18" height="18" fill="#F59E0B" aria-hidden="true">
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
             </svg>
             Load Sample Class
           </button>
-          <button id="shuffleNamesBtn" class="helper-btn" title="Randomize duck positions">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <button id="shuffleNamesBtn" class="helper-btn" title="Randomize racer positions">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.7-1.1 2-1.7 3.3-1.7H22"/>
               <path d="m18 2 4 4-4 4"/>
               <path d="M2 6h1.9c1.5 0 2.9.9 3.6 2.2"/>
               <path d="M22 18h-5.9c-1.3 0-2.5-.7-3.3-1.8l-.5-.7"/>
               <path d="m18 14 4 4-4 4"/>
             </svg>
-            Shuffle Ducks
+            Shuffle Racers
           </button>
           <button id="clearAllNamesBtn" class="helper-btn danger-helper" title="Clear all names">
-            <svg viewBox="0 0 20 20" width="18" height="18" fill="#DC2626">
+            <svg viewBox="0 0 20 20" width="18" height="18" fill="#DC2626" aria-hidden="true">
               <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
             </svg>
             Clear All
@@ -418,14 +418,14 @@
     <div class="drawer-backdrop" id="drawerBackdrop"></div>
 
     <!-- Winner Celebration Pop-up Modal -->
-    <div class="modal-overlay" id="winnerModalOverlay">
+    <div class="modal-overlay" id="winnerModalOverlay" aria-hidden="true">
       <!-- Fullscreen Confetti Canvas -->
-      <canvas id="confettiCanvas"></canvas>
+      <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
-      <div class="winner-modal-card" id="winnerModalCard">
+      <div class="winner-modal-card" id="winnerModalCard" role="dialog" aria-modal="true" aria-labelledby="winnerNameDisplay">
         <!-- Floating celebratory badges (Zero Emojis, Clean Vector Ribbon) -->
         <div class="winner-ribbon">
-          <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor" style="vertical-align:-2px; margin-right:6px;">
+          <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor" style="vertical-align:-2px; margin-right:6px;" aria-hidden="true">
             <path d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.285 1.05A3.989 3.989 0 0115 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.715-5.349L11 6.477V16h2a1 1 0 110 2H7a1 1 0 110-2h2V6.477L6.237 7.582l1.715 5.349a1 1 0 01-.285 1.05A3.989 3.989 0 015 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.738-5.42-1.233-.617a1 1 0 01.894-1.788l1.599.799L9 4.323V3a1 1 0 011-1z"/>
           </svg>
           1ST PLACE WINNER
@@ -435,7 +435,7 @@
         <div class="winner-avatar-wrapper">
           <div class="winner-duck-halo"></div>
           <div class="winner-duck-avatar" id="modalDuckIllustration">
-            <svg viewBox="0 0 160 160" width="146" height="146" class="crown-duck-svg" id="modalDuckSvg">
+            <svg viewBox="0 0 160 160" width="146" height="146" class="crown-duck-svg" id="modalDuckSvg" aria-hidden="true">
               <defs>
                 <linearGradient id="duckCrownGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stop-color="#FFF566"/>
@@ -481,7 +481,7 @@
           </div>
           <!-- Shiny True-Gold 1st Place Medal (Custom Vector SVG) -->
           <div class="trophy-badge" id="winnerMedalBadge">
-            <svg viewBox="0 0 72 84" width="66" height="76" class="gold-medal-svg">
+            <svg viewBox="0 0 72 84" width="66" height="76" class="gold-medal-svg" aria-hidden="true">
               <defs>
                 <linearGradient id="goldRibbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#3B82F6"/>
@@ -528,8 +528,8 @@
 
         <!-- Pop-up Action Buttons Required: Remove and Close (Zero Emoji, Clean Vector Icons) -->
         <div class="modal-button-group">
-          <button id="modalCloseBtn" class="modal-action-btn close-action-btn" title="Keep student in the race list">
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="btn-action-svg">
+          <button id="modalCloseBtn" class="modal-action-btn close-action-btn" title="Keep student in the race list" aria-label="Close and keep student in next race">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="btn-action-svg" aria-hidden="true">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
             <div class="btn-text-block">
@@ -538,8 +538,8 @@
             </div>
           </button>
 
-          <button id="modalRemoveBtn" class="modal-action-btn remove-action-btn" title="Remove student so others have a turn">
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-action-svg">
+          <button id="modalRemoveBtn" class="modal-action-btn remove-action-btn" title="Remove student so others have a turn" aria-label="Remove student from list">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-action-svg" aria-hidden="true">
               <polyline points="3 6 5 6 21 6"></polyline>
               <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
               <line x1="10" y1="11" x2="10" y2="17"></line>
@@ -555,13 +555,13 @@
     </div>
 
     <!-- Alert / Toast Notifications for Teachers -->
-    <div class="toast-container" id="toastContainer"></div>
+    <div class="toast-container" id="toastContainer" role="status" aria-live="polite"></div>
   </div>
 
   <!-- Core Platform Modules -->
-  <script src="js/core/roster.js?v=15"></script>
+  <script src="js/core/roster.js?v=16"></script>
   <script src="js/core/audio.js?v=15"></script>
-  <script src="js/core/modal.js?v=15"></script>
+  <script src="js/core/modal.js?v=16"></script>
   <script src="js/core/game-engine.js?v=15"></script>
 
   <!-- Game Modules -->
@@ -574,6 +574,6 @@
   <script src="js/games/wheel-fortune/wheel-fortune.js?v=10"></script>
 
   <!-- Platform Application Shell -->
-  <script src="app.js?v=29"></script>
+  <script src="app.js?v=31"></script>
 </body>
 </html>

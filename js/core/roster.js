@@ -251,8 +251,8 @@
           chip.innerHTML = `
             <span class="chip-duck-dot" style="background:${dotColor};"></span>
             <span>${name}</span>
-            <button class="chip-delete-btn" title="Remove student" data-index="${idx}">
-              <svg viewBox="0 0 20 20" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round">
+            <button class="chip-delete-btn" title="Remove ${name}" aria-label="Remove ${name}" data-index="${idx}">
+              <svg viewBox="0 0 20 20" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" aria-hidden="true">
                 <path d="M4 4l12 12M16 4L4 16"/>
               </svg>
             </button>
@@ -455,13 +455,26 @@
     }
 
     openDrawer() {
-      if (this.teacherDrawer) this.teacherDrawer.classList.add('open');
+      this.lastFocusedElement = document.activeElement;
+      if (this.teacherDrawer) {
+        this.teacherDrawer.classList.add('open');
+        this.teacherDrawer.setAttribute('aria-hidden', 'false');
+      }
       if (this.drawerBackdrop) this.drawerBackdrop.classList.add('open');
+      if (this.closeDrawerBtn) {
+        setTimeout(() => this.closeDrawerBtn.focus(), 50);
+      }
     }
 
     closeDrawer() {
-      if (this.teacherDrawer) this.teacherDrawer.classList.remove('open');
+      if (this.teacherDrawer) {
+        this.teacherDrawer.classList.remove('open');
+        this.teacherDrawer.setAttribute('aria-hidden', 'true');
+      }
       if (this.drawerBackdrop) this.drawerBackdrop.classList.remove('open');
+      if (this.lastFocusedElement && typeof this.lastFocusedElement.focus === 'function') {
+        this.lastFocusedElement.focus();
+      }
     }
 
     bindEvents() {
@@ -470,6 +483,31 @@
       if (hubDrawerBtn) hubDrawerBtn.addEventListener('click', () => this.openDrawer());
       if (this.closeDrawerBtn) this.closeDrawerBtn.addEventListener('click', () => this.closeDrawer());
       if (this.drawerBackdrop) this.drawerBackdrop.addEventListener('click', () => this.closeDrawer());
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && this.teacherDrawer && this.teacherDrawer.classList.contains('open')) {
+          this.closeDrawer();
+        }
+      });
+
+      if (this.teacherDrawer) {
+        this.teacherDrawer.addEventListener('keydown', e => {
+          if (e.key !== 'Tab') return;
+          const focusables = Array.from(this.teacherDrawer.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          )).filter(el => !el.disabled && el.offsetParent !== null);
+          if (focusables.length === 0) return;
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        });
+      }
 
       if (this.addSingleNameBtn && this.singleNameInput) {
         this.addSingleNameBtn.addEventListener('click', () => {
